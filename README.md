@@ -86,3 +86,43 @@ user@slave:~$ sudo kubeadm join {MASTER_IP}:6443 --token {TOKEN} --discovery-tok
 ```bash
 user@master:~$ kubectl get nodes
 ```
+
+---
+
+## Install MetalLB
+
+```bash
+user@master:~$ kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml
+user@master:~$ kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/metallb.yaml
+```
+
+### Create MetalLB Secret
+
+```bash
+user@master:~$ kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
+```
+
+### Configure MetalLB
+
+```bash
+# Create the ConfigMap
+user@master:~$ cat <<EOF | kubectl create -f -
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: metallb-system
+  name: config
+data:
+  config: |
+    address-pools:
+    - name: address-pool-1
+      protocol: layer2
+      addresses:
+      - 192.168.2.128-192.168.2.254
+EOF
+```
+
+*** DO NOT FORGET TO SPECIFY CORRECT SUBNET ***
+
+
+
