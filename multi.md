@@ -17,8 +17,8 @@ user@master:~$ cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
 deb https://apt.kubernetes.io/ kubernetes-xenial main
 EOF
 user@master:~$ sudo apt-get update
-user@master:~$ sudo apt-get install -y kubelet kubeadm kubectl
-user@master:~$ sudo apt-mark hold kubelet kubeadm kubectl cri-tools
+user@master:~$ sudo apt-get install -y kubelet kubeadm kubectl cri-tools
+user@master:~$ sudo apt-mark hold kubelet kubeadm kubectl 
 ```
 
 ## Install Docker (all nodes)
