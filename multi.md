@@ -30,7 +30,7 @@ user@master:~$ sudo apt install -y docker.io
 ## Install HAProxy and Keepalived
 
 ```bash
-user@master:~$ sudo apt-get install -y cri-tools haproxy keepalived
+user@master:~$ sudo apt-get install -y haproxy keepalived
 ```
 
 ## Configure Keepalived
