@@ -3,7 +3,7 @@
 ## Disable swap (all nodes)
 
 ```bash
-user@master:~$ sudo vim /ets/fstab
+user@master:~$ sudo vim /etc/fstab
 # comment swap mount string
 # reboot machine
 ```
